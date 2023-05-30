@@ -1,6 +1,7 @@
 import { useState } from "react";
+import PetsList from "./PetsList";
 
-function PetItem({ pet }) {
+function PetItem({ pet, handleAdopt }) {
   const [img, setImg] = useState(pet.image);
   const petImage2 = () => {
     setImg(pet.image2);
@@ -14,7 +15,7 @@ function PetItem({ pet }) {
           <button onClick={petImage2} type="button" className="btn btn-info">
             Pet
           </button>
-          <button type="button" class="btn btn-info  m-2">
+          <button onClick={handleAdopt} type="button" class="btn btn-info  m-2">
             Adopt
           </button>
         </div>

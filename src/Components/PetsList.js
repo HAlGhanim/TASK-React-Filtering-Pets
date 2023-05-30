@@ -5,19 +5,26 @@ import { useState } from "react";
 function PetsList() {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("");
-  const filteredPets = pets.filter((pet) => {
+  const [adopt, setAdopt] = useState(pets);
+  const filteredPets = adopt.filter((pet) => {
     return (
       pet.name.toLowerCase().includes(query.toLowerCase()) &&
       pet.type.includes(type)
     );
   });
-  const petList = filteredPets.map((pet) => <PetItem pet={pet} key={pet.id} />);
-  let handleChange = (event) => {
+  const handleAdopt = (petId) => {
+    setAdopt(adopt.filter((pet) => pet.id != petId));
+  };
+  const petList = filteredPets.map((pet) => (
+    <PetItem pet={pet} key={pet.id} handleAdopt={handleAdopt} />
+  ));
+  const handleChange = (event) => {
     setQuery(event.target.value);
   };
-  let handleType = (event) => {
+  const handleType = (event) => {
     setType(event.target.value);
   };
+
   return (
     <section id="doctors" className="doctor-section pt-140">
       <div className="container">
