@@ -13,7 +13,9 @@ function PetsList() {
     );
   });
   const handleAdopt = (petId) => {
-    setAdopt(adopt.filter((pet) => pet.id != petId));
+    if (window.confirm("Adopt this pet?")) {
+      setAdopt(adopt.filter((pet) => pet.id !== petId));
+    }
   };
   const petList = filteredPets.map((pet) => (
     <PetItem pet={pet} key={pet.id} handleAdopt={handleAdopt} />
